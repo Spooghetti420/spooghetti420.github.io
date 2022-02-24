@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="shortcut icon" href="favicon.ico">
+    <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="instructions.js"></script>
+    <script src="assembly.js"></script>
+    <script>
+        // Creates the memory dynamically on load
+        function makeMemory() {
+            const table = document.querySelector("#memory");
+            let inner = "<tbody>";
+            for (let i = 0; i < 10; i++)
+            {
+                let row = "<tr>"
+                for (let j = 0; j < 10; j++)
+                {
+                    row += `<td>000</td>` 
+                }
+                row += "</tr>"
+                inner += row
+            }
+            inner += "</tbody>"
+            table.innerHTML = inner;
+        }
+    </script>
+    <title>Assembly Interpreter</title>
+</head>
+<body onload="makeMemory();">
+<p><b>Main page</b> ・ <a href="instructions.html">Instructions</a></p>
+<h1>Assembly Interpreter</h1>
+<h3>Accumulator</h3>
+<span id="accumulator">0</span>
+<hr>
+<h3>Enter instruction</h3>
+<form action="#" onsubmit="parseAssembly(); return false" id="form">
+    <input type="text" id="prompt"></input> <span id="invalid" hidden>Invalid input</span>
+</form>
+<hr>
+<h3>Memory</h3>
+<table id="memory">
+</table>
+
+<hr>
+<h3>Output</h3>
+<div id="output">
+</div>
+
+</body>
+</html>
