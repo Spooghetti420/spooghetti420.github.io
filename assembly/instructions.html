@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="shortcut icon" href="favicon.ico">
+    <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instruction Set</title>
+    <script src="instructions.js"></script>
+    <script>
+        // Creates the help chart dynamically on load
+        function help() {
+            const help = document.querySelector("#help");
+            for (const command of Object.values(instructions))
+            {
+                const title = document.createElement("h3");
+                title.textContent = command.name;
+                
+                const takesArgs = document.createElement("p");
+                takesArgs.className = "faint";
+                takesArgs.innerHTML = `Takes arguments: <em>${(command.instruction.length === 1).toString()}</em>`;
+
+                const info = document.createElement("span");
+                info.textContent = command.info;
+
+                help.appendChild(title);
+                help.appendChild(takesArgs);
+                help.appendChild(info);
+            }
+        }
+    </script>
+</head>
+<body onload="help()">
+<p><a href="index.html">Main page</a> ・ <b>Instructions</b></p>
+<h1>Instruction set</h1>
+<p>The below chart represents a dynamic, up-to-date list of all the instructions the interpreter currently supports.</p>
+<p>Addressing mode is specified using the <code>#</code> symbol, which designates a literal value (immediate addressing).
+    In absolutely <em>all</em> cases, a bare number (e.g. <code>6</code>) will be interpreted as an address (direct addressing),
+    and the data at that address in memory will be fetched and passed to the instruction. Therefore, for instructions such as
+    <code>sto</code>, it is advisory to use immediate addressing, i.e. as <code>sto #6</code> to prevent unexpected behavior.
+</p>
+<div id="help">
+</div>
+</body>
+</html>

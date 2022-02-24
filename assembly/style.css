@@ -1,0 +1,15 @@
+table, th, td {
+    border:1px solid black;
+}
+
+div#output {
+    font-family: 'Courier New', Courier, monospace;
+}
+
+#invalid {
+    color: #f00;
+}
+
+.faint {
+    color: rgb(114, 112, 112)
+}
