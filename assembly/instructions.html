@@ -11,10 +11,10 @@
         // Creates the help chart dynamically on load
         function help() {
             const help = document.querySelector("#help");
-            for (const command of Object.values(instructions))
+            for (const [opcode, command] of Object.entries(instructions))
             {
                 const title = document.createElement("h3");
-                title.textContent = command.name;
+                title.textContent = `${command.name} (${opcode})`;
                 
                 const takesArgs = document.createElement("p");
                 takesArgs.className = "faint";
