@@ -25,13 +25,13 @@ export let Tetris_image;
 // Music and sfx
 export let Menu_music, Gameplay_music, Game_over, Wall_hit, Line_cleared, hard_drop;
 window.preload = function () {
-    Menu_music = loadSound("Assets/Music/Menu_music.wav");
-    Gameplay_music = loadSound("Assets/Music/Gameplay_music.wav");
-    Game_over = loadSound("Assets/Music/Game_over.wav");
-    Wall_hit = loadSound("Assets/Music/Wall_hit.wav");
-    Line_cleared = loadSound("Assets/Music/Line_cleared.mp3");
-    hard_drop = loadSound("Assets/Music/Hard_drop.wav");
-    Tetris_image = loadImage('Assets/Images/Tetris_image.png');
+    Menu_music = loadSound("assets/Music/Menu_music.wav");
+    Gameplay_music = loadSound("assets/Music/Gameplay_music.wav");
+    Game_over = loadSound("assets/Music/Game_over.wav");
+    Wall_hit = loadSound("assets/Music/Wall_hit.wav");
+    Line_cleared = loadSound("assets/Music/Line_cleared.mp3");
+    hard_drop = loadSound("assets/Music/Hard_drop.wav");
+    Tetris_image = loadImage('assets/Images/Tetris_image.png');
 };
 window.setup = function () {
     canvas = createCanvas(...resolution);
