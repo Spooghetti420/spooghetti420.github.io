@@ -24,7 +24,6 @@ export class GameWindow {
         this.scaleVec = [1 / 19 * resolution[0], 1 / 19 * resolution[1]];
         this.grid = new Grid([1, 1], [10, 15], [190, 220, 240], flags);
         this.bgColor = [200, 230, 255];
-        this.running = true;
         this.score = 0;
         this.scoreboard = new TextLabel([200, 200, 220], this.score.toString(), [255, 0, 0], [300, 50, 150, 25], true);
     }
@@ -85,17 +84,17 @@ export class GameWindow {
                 else if (bound_actions[k][0] == "rotate") {
                     this.activePiece.rotate(bound_actions[k][1], this.grid);
                 }
-                if (keys[k].should_reset)
+                if (keys[k].shouldReset)
                     keys[k].state = false;
             }
         }
     }
-    render(screen) {
+    render(language) {
         if (!this.active)
             return;
-        screen.background(this.bgColor);
+        background(this.bgColor);
         this.grid.render(this.scaleVec);
-        this.activePiece.render(screen, this.scaleVec);
-        this.scoreboard.render();
+        this.activePiece.render(this.scaleVec);
+        this.scoreboard.render(language);
     }
 }

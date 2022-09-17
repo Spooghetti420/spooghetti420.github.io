@@ -1,3 +1,4 @@
+import { LocalisableString } from "./i18n.js";
 export class Label {
     constructor(bgColor, Text, Rect, visible = true) {
         this.text = Text;
@@ -5,14 +6,19 @@ export class Label {
         this.rect = Rect;
         this.visible = visible;
     }
-    render() {
+    render(language) {
         if (this.visible) {
             fill(...this.bgColor);
             rect(...this.rect);
             fill(0);
             textSize(this.rect[3] / 2);
             textAlign(CENTER);
-            text(this.text, this.rect[0] + this.rect[2] / 2, this.rect[1] + this.rect[3] / 2 + 5);
+            if (this.text instanceof LocalisableString) {
+                text(this.text.getLocalisedString(language), this.rect[0] + this.rect[2] / 2, this.rect[1] + this.rect[3] / 2 + 5);
+            }
+            else {
+                text(this.text, this.rect[0] + this.rect[2] / 2, this.rect[1] + this.rect[3] / 2 + 5);
+            }
         }
     }
 }

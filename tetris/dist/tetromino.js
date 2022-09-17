@@ -53,18 +53,12 @@ export class Tetronimo {
             this.tiles = previous;
         }
     }
-    render(surface, scale) {
+    render(scale) {
         const pos = this.position;
         for (const tile of this.tiles) {
             fill(...this.color);
-            surface.rect([(pos[0] + tile[0]) * scale[0],
-                (pos[1] + tile[1]) * scale[1],
-                scale[0],
-                scale[1]]);
-            surface.rect([(pos[0] + tile[0]) * scale[0],
-                (pos[1] + tile[1]) * scale[1],
-                scale[0],
-                scale[1]]);
+            rect((pos[0] + tile[0]) * scale[0], (pos[1] + tile[1]) * scale[1], scale[0], scale[1]);
+            rect((pos[0] + tile[0]) * scale[0], (pos[1] + tile[1]) * scale[1], scale[0], scale[1]);
         }
     }
 }

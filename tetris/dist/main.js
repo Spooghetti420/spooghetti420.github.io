@@ -1,8 +1,9 @@
 import { GameWindow } from "./gameWindow.js";
+import { Language, LanguageName, loadLanguages } from "./i18n.js";
 import { Menu } from "./menu.js";
 class KeyState {
-    constructor(state, shouldReset) {
-        this.state = state;
+    constructor(shouldReset = false) {
+        this.state = false;
         this.shouldReset = shouldReset;
     }
 }
@@ -32,6 +33,7 @@ window.preload = function () {
     Line_cleared = loadSound("assets/Music/Line_cleared.mp3");
     hard_drop = loadSound("assets/Music/Hard_drop.wav");
     Tetris_image = loadImage('assets/Images/Tetris_image.png');
+    loadLanguages();
 };
 window.setup = function () {
     canvas = createCanvas(...resolution);
@@ -44,16 +46,17 @@ window.setup = function () {
 // UI elements
 let game;
 let menu;
-// // inputs Format .active, .shouldReset
+let language = new Language(LanguageName.Japanese);
+// inputs              shouldReset parameter is passed as `true` if the key should not act multiple times when held
 const keys = {
-    [37]: new KeyState(false, false),
-    [39]: new KeyState(false, false),
-    [40]: new KeyState(false, false),
-    [32]: new KeyState(false, true),
-    [68]: new KeyState(false, true),
-    [65]: new KeyState(false, true) // a
+    [37]: new KeyState(),
+    [39]: new KeyState(),
+    [40]: new KeyState(),
+    [32]: new KeyState(true),
+    [68]: new KeyState(true),
+    [65]: new KeyState(true) // a
 };
-// mainloop
+// main loop
 window.draw = function () {
     if (!running) {
         if (Date.now() - endTime > 2000) {
@@ -68,8 +71,8 @@ window.draw = function () {
     }
     const time_start = Date.now();
     // rendering
-    menu.render(canvas);
-    game.render(canvas);
+    menu.render(language);
+    game.render(language);
     // events and flags
     game.update(timeElapsed);
     game.userInput(keys);
